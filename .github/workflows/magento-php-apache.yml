@@ -32,7 +32,7 @@ jobs:
         id: "tagName"
 
       - name: "Build Docker image"
-        run: "docker build --tag bavaan/${{ matrix.actions-with-docker-image }}-action:${{ matrix.php-version }}-latest build/apache/. -f ${{ matrix.php-version }}/Dockerfile"
+        run: "docker build --tag bavaan/${{ matrix.actions-with-docker-image }}:${{ matrix.php-version }} build/apache/. -f build/apache/php-${{ matrix.php-version }}/Dockerfile"
 
       - name: "Docker Login"
         run: "echo ${{ secrets.DOCKER_PASSWORD }} | $(which docker) login --password-stdin --username ${{ env.DOCKER_USERNAME }}"

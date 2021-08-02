@@ -29,7 +29,7 @@ jobs:
         id: "tagName"
 
       - name: "Build Docker image"
-        run: "docker build --tag bavaan/${{ matrix.actions-with-docker-image }}-action:${{ matrix.varnish-version }}-latest build/varnish/. -f Dockerfile:${{ matrix.varnish-version }}"
+        run: "docker build --tag bavaan/${{ matrix.actions-with-docker-image }}-action:${{ matrix.varnish-version }} build/varnish/. -f build/varnish/Dockerfile:${{ matrix.varnish-version }}"
 
       - name: "Docker Login"
         run: "echo ${{ secrets.DOCKER_PASSWORD }} | $(which docker) login --password-stdin --username ${{ env.DOCKER_USERNAME }}"
