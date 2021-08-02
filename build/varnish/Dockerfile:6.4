@@ -32,7 +32,7 @@ ENV VARNISH_CONTAINER_LOG_TYPE ${VARNISH_LOG_TYPE:-"varnishncsa"}
 
 WORKDIR /etc/varnish
 
-COPY /build/varnish/start.sh /usr/bin/varnish-start.sh
+COPY start.sh /usr/bin/varnish-start.sh
 
 RUN chmod +x /usr/bin/varnish-start.sh
 
