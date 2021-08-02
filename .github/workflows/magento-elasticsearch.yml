@@ -3,7 +3,8 @@ name: Build Elasticsearch Images
 on:
   push:
     paths:
-      - 'build/apache/**'
+      - '.github/workflows/magento-elasticsearch.yml'
+      - 'build/elasticsearch/**'
 
 jobs:
   build:

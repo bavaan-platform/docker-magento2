@@ -3,6 +3,7 @@ name: Build Magento Php Apache Images
 on:
   push:
     paths:
+      - '.github/workflows/magento-php-apache.yml'
       - 'build/apache/**'
 
 jobs:

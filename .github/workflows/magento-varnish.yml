@@ -3,6 +3,7 @@ name: Build Varnish Images
 on:
   push:
     paths:
+      - '.github/workflows/magento-varnish.yml'
       - 'build/varnish/**'
 
 jobs:
