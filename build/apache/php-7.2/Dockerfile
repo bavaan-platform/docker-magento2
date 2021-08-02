@@ -1,7 +1,5 @@
 FROM php:7.2-apache
 
-MAINTAINER echo <echo.magento@gmail.com>
-
 ENV XDEBUG_PORT 9000
 
 # Install System Dependencies

@@ -1,0 +1,41 @@
+name: Build Elasticsearch Images
+
+on:
+  push:
+    paths:
+      - 'build/apache/**'
+
+jobs:
+  build:
+    name: "Build and deploy"
+
+    runs-on: "ubuntu-latest"
+
+    strategy:
+      matrix:
+        elasticsearch-version:
+          - "6.4"
+        actions-with-docker-image:
+          - "magento-elasticsearch"
+    env:
+      DOCKER_USERNAME: "bavaan"
+
+    steps:
+      - name: "Checkout"
+        uses: "actions/checkout@v2"
+
+      - name: "Grab version number"
+        uses: "olegtarasov/get-tag@v1"
+        id: "tagName"
+
+      - name: "Build Docker image"
+        run: "docker build --tag bavaan/${{ matrix.actions-with-docker-image }}-action:${{ matrix.elasticsearch-version }}-latest build/elasticsearch/. -f Dockerfile:${{ matrix.elasticsearch-version }}"
+
+      - name: "Docker Login"
+        run: "echo ${{ secrets.DOCKER_PASSWORD }} | $(which docker) login --password-stdin --username ${{ env.DOCKER_USERNAME }}"
+
+      - name: "Push Docker image (latest)"
+        run: "docker push bavaan/${{ matrix.actions-with-docker-image }}:${{ matrix.elasticsearch-version }}"
+
+      - name: "Docker Logout"
+        run: "docker logout"
